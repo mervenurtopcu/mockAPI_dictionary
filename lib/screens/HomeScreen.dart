@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:adv_fab/adv_fab.dart';
 import 'package:my_dictionary/services/dictionary_services.dart';
 
 import '../models/dictionary_model.dart';
-
+//hello
+//helllo
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -15,19 +15,19 @@ class _HomeScreenState extends State<HomeScreen> {
   DictionaryServices dicServices = DictionaryServices();
   late Future<List<Dictionary>> listDictionary;
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    listDictionary = _getDictionary();
+  // @override
+  // void initState() {
+  //   //
+  //   super.initState();
+  //   listDictionary = _getDictionary();
+  //
+  // }
 
-  }
-
-  Future<List<Dictionary>> _getDictionary() async {
-    List<Dictionary> dictionary = (await DictionaryServices().getDictionary())!;
-    Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
-    return Future.value(dictionary);
-  }
+  // Future<List<Dictionary>> _getDictionary() async {
+  //   List<Dictionary> dictionary = (await DictionaryServices().getDictionary())!;
+  //   Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
+  //   return Future.value(dictionary);
+  // }
 
   @override
   Widget build(BuildContext context) {
