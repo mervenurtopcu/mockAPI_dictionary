@@ -28,5 +28,29 @@ class DictionaryServices{
     return null;
   }
 
+  Future<Dictionary> createWord(String english,String turkish, String sentence) async {
+    final response = await http.post(
+      Uri.parse('https://6380c4968efcfcedac0e72fe.mockapi.io/words'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'english': english,
+        'turkish': turkish,
+        'sentence': sentence,
+      }),
+    );
+
+    if (response.statusCode == 201) {
+      // If the server did return a 201 CREATED response,
+      // then parse the JSON.
+      return Dictionary.fromJson(jsonDecode(response.body));
+    } else {
+      // If the server did not return a 201 CREATED response,
+      // then throw an exception.
+      throw Exception('Failed to create word.');
+    }
+  }
+
 
 }
