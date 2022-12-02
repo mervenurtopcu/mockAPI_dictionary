@@ -51,6 +51,28 @@ class DictionaryServices{
       throw Exception('Failed to create word.');
     }
   }
+  Future<Dictionary> updateWord(String id,String english,String turkish, String sentence) async {
+    final response = await http.put(
+      Uri.parse('https://6380c4968efcfcedac0e72fe.mockapi.io/words/$id'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'english': english,
+        'turkish': turkish,
+        'sentence': sentence,
+      }),
+    );
 
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      return Dictionary.fromJson(jsonDecode(response.body));
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      throw Exception('Failed to update word.');
+    }
+  }
 
 }

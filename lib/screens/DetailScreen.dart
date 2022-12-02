@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_dictionary/models/dictionary_model.dart';
 import 'package:my_dictionary/screens/HomeScreen.dart';
+import 'package:my_dictionary/screens/UpdateScreen.dart';
 
 class DetailScreen extends StatefulWidget {
   const DetailScreen({Key? key, required this.word}) : super(key: key);
@@ -31,7 +32,6 @@ class _DetailScreenState extends State<DetailScreen> {
                   Expanded(
                       flex: 1,
                       child: Container(
-                        // constraints: BoxConstraints(maxHeight: 200),
                         height: 100,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
@@ -127,7 +127,7 @@ class _DetailScreenState extends State<DetailScreen> {
               Center(
                 child: ElevatedButton(
                   onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const HomeScreen())),
+                      builder: (context) =>  UpdateScreen(word: widget.word,))),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.yellow,
                     fixedSize: const Size(250, 30),
