@@ -1,16 +1,12 @@
-# my_dictionary
+# Dictionary 
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+In this project, you can add Turkish and English words as well as related sentences to your dictionary.
+## More Details
+Mock API is used in this project
+- First, you must create a project as a member of the [mock api](https://mockapi.io/projects) site.
+- You can use the resulting 'api endpoint' address for http operations in your project.
+### Networking
+- Fetch data from the internet
+- Send data to the internet
+- Update data over the internet
+- Delete data on the internet
