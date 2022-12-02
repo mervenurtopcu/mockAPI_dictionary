@@ -17,6 +17,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
   late String english, turkish, sentence;
   late Dictionary word;
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
