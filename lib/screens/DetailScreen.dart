@@ -22,8 +22,9 @@ class _DetailScreenState extends State<DetailScreen> {
         backgroundColor: Colors.orange,
         shadowColor: Colors.black,
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 20.0),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 20.0),
           child: Column(
             children: [
               Row(
@@ -127,7 +128,9 @@ class _DetailScreenState extends State<DetailScreen> {
               Center(
                 child: ElevatedButton(
                   onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) =>  UpdateScreen(word: widget.word,))),
+                      builder: (context) => UpdateScreen(
+                            word: widget.word,
+                          ))),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.yellow,
                     fixedSize: const Size(250, 30),
@@ -162,7 +165,7 @@ class _DetailScreenState extends State<DetailScreen> {
               ),
             ],
           ),
-
+        ),
       ),
     );
   }
