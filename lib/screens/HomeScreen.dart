@@ -28,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Future.value(dictionary);
   }
 
+
   @override
   Widget build(BuildContext context) {
     const transitionType = ContainerTransitionType.fade;
