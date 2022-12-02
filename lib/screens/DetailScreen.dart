@@ -171,7 +171,6 @@ class _DetailScreenState extends State<DetailScreen> {
       ),
     );
   }
-
   Future<void> _showAlertDialog() async {
     return showDialog<void>(
       context: context,
