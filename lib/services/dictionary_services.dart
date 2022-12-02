@@ -1,22 +1,20 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'package:my_dictionary/models/dictionary_model.dart';
 import 'package:http/http.dart ' as http;
 
 class DictionaryServices {
   //List all the words
-  Future<List<Dictionary>?> getDictionary() async {
-    try {
-      var url = Uri.parse('https://6380c4968efcfcedac0e72fe.mockapi.io/words');
-      var response = await http.get(url);
-      if (response.statusCode == 200) {
-        List<Dictionary> model = dictionaryFromJson(response.body);
-        return model;
-      }
-    } catch (e) {
-      log(e.toString());
+
+  Future<List<Dictionary>> getDictionary() async {
+    final response = await http.get(Uri.parse('https://6380c4968efcfcedac0e72fe.mockapi.io/words'));
+
+    if (response.statusCode == 200) {
+      final parsed = json.decode(response.body).cast<Map<String, dynamic>>();
+
+      return parsed.map<Dictionary>((json) => Dictionary.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load words');
     }
-    return null;
   }
 //Create a new word
   Future<Dictionary> createWord(

@@ -18,15 +18,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    listDictionary = _getDictionary();
+    listDictionary = DictionaryServices().getDictionary();
   }
-
-  Future<List<Dictionary>> _getDictionary() async {
-    List<Dictionary> dictionary = (await DictionaryServices().getDictionary())!;
-    Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
-    return Future.value(dictionary);
-  }
-
 
   @override
   Widget build(BuildContext context) {
@@ -49,15 +42,14 @@ class _HomeScreenState extends State<HomeScreen> {
           future: listDictionary,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              List<Dictionary> dictionary = snapshot.data!;
-              return dictionary.isEmpty
+              return snapshot.data!.isEmpty
                   ? const Center(
                       child: Text(
                           "The words are listed here. Please add words.",
                           style: TextStyle(fontSize: 16, color: Colors.grey)),
                     )
                   : ListView.builder(
-                      itemCount: dictionary.length,
+                      itemCount: snapshot.data!.length,
                       itemBuilder: (context, index) {
                         return Container(
                           decoration: BoxDecoration(
@@ -80,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           margin: const EdgeInsets.all(3.0),
                           child: ListTile(
                             title: Text(
-                              dictionary[index].english,
+                              snapshot.data![index].english,
                               style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16,
@@ -96,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
-                                      DetailScreen(word: dictionary[index]),
+                                      DetailScreen(word: snapshot.data![index]),
                                 ),
                               );
                             },
@@ -137,7 +129,6 @@ class CustomFABWidget extends StatelessWidget {
         closedBuilder: (context, openContainer) => Container(
           decoration: const BoxDecoration(
             shape: BoxShape.circle,
-            //color: Theme.of(context).primaryColor,
             color: Colors.orange,
           ),
           height: fabSize,
