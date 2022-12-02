@@ -10,6 +10,7 @@ class AddWordScreen extends StatefulWidget {
 }
 
 class _AddWordScreenState extends State<AddWordScreen> {
+
   late String english, turkish, sentence;
   final formKey = GlobalKey<FormState>();
 
