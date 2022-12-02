@@ -13,7 +13,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  DictionaryServices dicServices = DictionaryServices();
   late Future<List<Dictionary>> listDictionary;
 
   @override
