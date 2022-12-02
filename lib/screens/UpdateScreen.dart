@@ -122,18 +122,19 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         formKey.currentState?.validate();
                     if (icerikUygunMu == true) {
                       formKey.currentState?.save();
-                      veriEkleme(widget.word.id, english, turkish, sentence);
+                      deleteWord(widget.word.id, english, turkish, sentence);
 
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (context) => const HomeScreen()));
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
+                    backgroundColor: Colors.orangeAccent,
                     padding: const EdgeInsets.only(
                         left: 150, right: 150, top: 10, bottom: 10),
                     textStyle: const TextStyle(
                       fontSize: 18,
+                      fontWeight: FontWeight.bold
                     ),
                     shadowColor: Colors.black,
                   ),
@@ -145,7 +146,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
         ));
   }
 
-  void veriEkleme(String id, String english, String turkish, String sentence) {
+  void deleteWord(String id, String english, String turkish, String sentence) {
     DictionaryServices().updateWord(id, english, turkish, sentence);
   }
 }

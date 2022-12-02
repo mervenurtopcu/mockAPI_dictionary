@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_dictionary/models/dictionary_model.dart';
 import 'package:my_dictionary/screens/HomeScreen.dart';
 import 'package:my_dictionary/screens/UpdateScreen.dart';
+import 'package:my_dictionary/services/dictionary_services.dart';
 
 class DetailScreen extends StatefulWidget {
   const DetailScreen({Key? key, required this.word}) : super(key: key);
@@ -147,8 +148,14 @@ class _DetailScreenState extends State<DetailScreen> {
               ),
               Center(
                 child: ElevatedButton(
-                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const HomeScreen())),
+                  onPressed: _showAlertDialog,
+                  // onPressed: () {
+                  //   setState(() {
+                  //     DictionaryServices().deleteWord(widget.word.id);
+                  //     Navigator.of(context).push(MaterialPageRoute(
+                  //              builder: (context) => const HomeScreen()));
+                  //   });
+                  // },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.orangeAccent,
                     fixedSize: const Size(250, 30),
@@ -167,6 +174,43 @@ class _DetailScreenState extends State<DetailScreen> {
           ),
         ),
       ),
+    );
+  }
+  Future<void> _showAlertDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog( // <-- SEE HERE
+          title: const Text('Delete word'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('Are you sure want to delete this word?'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('No'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('Yes'),
+              onPressed: () {
+                  setState(() {
+                    DictionaryServices().deleteWord(widget.word.id);
+                    Navigator.pushReplacement(context,MaterialPageRoute(
+                             builder: (context) => const HomeScreen()));
+                  });
+                //Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
