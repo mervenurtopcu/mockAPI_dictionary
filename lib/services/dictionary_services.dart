@@ -1,10 +1,9 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:my_dictionary/models/dictionary_model.dart';
-import 'package:http/http.dart 'as http;
+import 'package:http/http.dart ' as http;
 
-class DictionaryServices{
-
+class DictionaryServices {
   Future<List<Dictionary>?> getDictionary() async {
     try {
       var url = Uri.parse('https://6380c4968efcfcedac0e72fe.mockapi.io/words');
@@ -19,7 +18,8 @@ class DictionaryServices{
     return null;
   }
 
-  Future<Dictionary> createWord(String english,String turkish, String sentence) async {
+  Future<Dictionary> createWord(
+      String english, String turkish, String sentence) async {
     final response = await http.post(
       Uri.parse('https://6380c4968efcfcedac0e72fe.mockapi.io/words'),
       headers: <String, String>{
@@ -33,16 +33,14 @@ class DictionaryServices{
     );
 
     if (response.statusCode == 201) {
-      // If the server did return a 201 CREATED response,
-      // then parse the JSON.
       return Dictionary.fromJson(jsonDecode(response.body));
     } else {
-      // If the server did not return a 201 CREATED response,
-      // then throw an exception.
       throw Exception('Failed to create word.');
     }
   }
-  Future<Dictionary> updateWord(String id,String english,String turkish, String sentence) async {
+
+  Future<Dictionary> updateWord(
+      String id, String english, String turkish, String sentence) async {
     final response = await http.put(
       Uri.parse('https://6380c4968efcfcedac0e72fe.mockapi.io/words/$id'),
       headers: <String, String>{
@@ -56,12 +54,8 @@ class DictionaryServices{
     );
 
     if (response.statusCode == 200) {
-      // If the server did return a 200 OK response,
-      // then parse the JSON.
       return Dictionary.fromJson(jsonDecode(response.body));
     } else {
-      // If the server did not return a 200 OK response,
-      // then throw an exception.
       throw Exception('Failed to update word.');
     }
   }
@@ -75,15 +69,8 @@ class DictionaryServices{
     );
 
     if (response.statusCode == 200) {
-      // If the server did return a 200 OK response,
-      // then parse the JSON. After deleting,
-      // you'll get an empty JSON `{}` response.
-      // Don't return `null`, otherwise `snapshot.hasData`
-      // will always return false on `FutureBuilder`.
       return Dictionary.fromJson(jsonDecode(response.body));
     } else {
-      // If the server did not return a "200 OK response",
-      // then throw an exception.
       throw Exception('Failed to delete word.');
     }
   }

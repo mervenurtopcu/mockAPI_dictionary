@@ -1,10 +1,7 @@
-// To parse this JSON data, do
-//
-//     final dictionary = dictionaryFromJson(jsonString);
-
 import 'dart:convert';
 
-List<Dictionary> dictionaryFromJson(String str) => List<Dictionary>.from(json.decode(str).map((x)=>Dictionary.fromJson(x)));
+List<Dictionary> dictionaryFromJson(String str) =>
+    List<Dictionary>.from(json.decode(str).map((x) => Dictionary.fromJson(x)));
 
 String dictionaryToJson(Dictionary data) => json.encode(data.toJson());
 
@@ -22,16 +19,16 @@ class Dictionary {
   String id;
 
   factory Dictionary.fromJson(Map<String, dynamic> json) => Dictionary(
-    english: json["english"],
-    turkish: json["turkish"],
-    sentence: json["sentence"],
-    id: json["id"],
-  );
+        english: json["english"],
+        turkish: json["turkish"],
+        sentence: json["sentence"],
+        id: json["id"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "english": english,
-    "turkish": turkish,
-    "sentence": sentence,
-    "id": id,
-  };
+        "english": english,
+        "turkish": turkish,
+        "sentence": sentence,
+        "id": id,
+      };
 }

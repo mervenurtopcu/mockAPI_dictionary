@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_dictionary/models/dictionary_model.dart';
 import 'package:my_dictionary/screens/HomeScreen.dart';
 import 'package:my_dictionary/services/dictionary_services.dart';
 
@@ -12,18 +11,19 @@ class AddWordScreen extends StatefulWidget {
 
 class _AddWordScreenState extends State<AddWordScreen> {
   late String english, turkish, sentence;
-  late Dictionary newWord;
   final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ADD WORD',style: TextStyle(fontFamily: 'Combo',fontWeight: FontWeight.bold),),
-          elevation: 15,
-          backgroundColor: Colors.orange,
-          shadowColor: Colors.black,
+        title: const Text(
+          'ADD WORD',
+          style: TextStyle(fontFamily: 'Combo', fontWeight: FontWeight.bold),
+        ),
+        elevation: 15,
+        backgroundColor: Colors.orange,
+        shadowColor: Colors.black,
       ),
       body: Form(
         key: formKey,
@@ -117,8 +117,9 @@ class _AddWordScreenState extends State<AddWordScreen> {
             Center(
                 child: ElevatedButton(
               onPressed: () {
-                final bool? icerikUygunMu = formKey.currentState?.validate();
-                if (icerikUygunMu == true) {
+                final bool? contentIsSuitable =
+                    formKey.currentState?.validate();
+                if (contentIsSuitable == true) {
                   formKey.currentState?.save();
                   DictionaryServices().createWord(english, turkish, sentence);
                   Navigator.of(context).pushReplacement(MaterialPageRoute(

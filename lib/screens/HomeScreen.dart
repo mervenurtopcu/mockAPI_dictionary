@@ -35,7 +35,12 @@ class _HomeScreenState extends State<HomeScreen> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Center(child: Text("Dictionary", style: TextStyle(fontFamily: 'Combo',fontSize: 28,fontWeight: FontWeight.bold))),
+          title: const Center(
+              child: Text("Dictionary",
+                  style: TextStyle(
+                      fontFamily: 'Combo',
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold))),
           elevation: 15,
           backgroundColor: Colors.orange,
           shadowColor: Colors.black,
@@ -74,8 +79,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ])),
                           margin: const EdgeInsets.all(3.0),
                           child: ListTile(
-                            title: Text(dictionary[index].english, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white,letterSpacing: 1.0),),
-                            trailing: const Icon(Icons.keyboard_arrow_right,color: Colors.white,),
+                            title: Text(
+                              dictionary[index].english,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  letterSpacing: 1.0),
+                            ),
+                            trailing: const Icon(
+                              Icons.keyboard_arrow_right,
+                              color: Colors.white,
+                            ),
                             onTap: () {
                               Navigator.push(
                                 context,

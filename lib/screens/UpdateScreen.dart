@@ -21,7 +21,9 @@ class _UpdateScreenState extends State<UpdateScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.word.english,style: const TextStyle(fontFamily: 'Combo',fontWeight: FontWeight.bold)),
+          title: Text(widget.word.english,
+              style: const TextStyle(
+                  fontFamily: 'Combo', fontWeight: FontWeight.bold)),
           elevation: 15,
           backgroundColor: Colors.orange,
           shadowColor: Colors.black,
@@ -133,9 +135,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                     padding: const EdgeInsets.only(
                         left: 150, right: 150, top: 10, bottom: 10),
                     textStyle: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold
-                    ),
+                        fontSize: 18, fontWeight: FontWeight.bold),
                     shadowColor: Colors.black,
                   ),
                   child: const Text("SAVE"),

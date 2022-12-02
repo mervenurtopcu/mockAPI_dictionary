@@ -18,7 +18,9 @@ class _DetailScreenState extends State<DetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.word.english,style: const TextStyle(fontFamily: 'Combo',fontWeight: FontWeight.bold)),
+        title: Text(widget.word.english,
+            style: const TextStyle(
+                fontFamily: 'Combo', fontWeight: FontWeight.bold)),
         elevation: 15,
         backgroundColor: Colors.orange,
         shadowColor: Colors.black,
@@ -169,12 +171,13 @@ class _DetailScreenState extends State<DetailScreen> {
       ),
     );
   }
+
   Future<void> _showAlertDialog() async {
     return showDialog<void>(
       context: context,
-      barrierDismissible: false, // user must tap button!
+      barrierDismissible: false,
       builder: (BuildContext context) {
-        return AlertDialog( // <-- SEE HERE
+        return AlertDialog(
           title: const Text('Delete word'),
           content: SingleChildScrollView(
             child: ListBody(
@@ -193,11 +196,13 @@ class _DetailScreenState extends State<DetailScreen> {
             TextButton(
               child: const Text('Yes'),
               onPressed: () {
-                  setState(() {
-                    DictionaryServices().deleteWord(widget.word.id);
-                    Navigator.pushReplacement(context,MaterialPageRoute(
-                             builder: (context) => const HomeScreen()));
-                  });
+                setState(() {
+                  DictionaryServices().deleteWord(widget.word.id);
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const HomeScreen()));
+                });
                 //Navigator.of(context).pop();
               },
             ),
