@@ -1,8 +1,8 @@
 import 'dart:convert';
-
+//decoding
 List<Dictionary> dictionaryFromJson(String str) =>
     List<Dictionary>.from(json.decode(str).map((x) => Dictionary.fromJson(x)));
-
+//encoding
 String dictionaryToJson(Dictionary data) => json.encode(data.toJson());
 
 class Dictionary {
