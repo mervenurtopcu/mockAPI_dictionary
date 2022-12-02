@@ -18,7 +18,7 @@ class _DetailScreenState extends State<DetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.word.english),
+        title: Text(widget.word.english,style: const TextStyle(fontFamily: 'Combo',fontWeight: FontWeight.bold)),
         elevation: 15,
         backgroundColor: Colors.orange,
         shadowColor: Colors.black,
@@ -149,13 +149,6 @@ class _DetailScreenState extends State<DetailScreen> {
               Center(
                 child: ElevatedButton(
                   onPressed: _showAlertDialog,
-                  // onPressed: () {
-                  //   setState(() {
-                  //     DictionaryServices().deleteWord(widget.word.id);
-                  //     Navigator.of(context).push(MaterialPageRoute(
-                  //              builder: (context) => const HomeScreen()));
-                  //   });
-                  // },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.orangeAccent,
                     fixedSize: const Size(250, 30),

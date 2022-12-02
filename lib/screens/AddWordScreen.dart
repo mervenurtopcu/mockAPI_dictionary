@@ -20,7 +20,7 @@ class _AddWordScreenState extends State<AddWordScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Word'),
+        title: const Text('ADD WORD',style: TextStyle(fontFamily: 'Combo',fontWeight: FontWeight.bold),),
           elevation: 15,
           backgroundColor: Colors.orange,
           shadowColor: Colors.black,
