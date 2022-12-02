@@ -4,6 +4,7 @@ import 'package:my_dictionary/models/dictionary_model.dart';
 import 'package:http/http.dart ' as http;
 
 class DictionaryServices {
+  //List all the words
   Future<List<Dictionary>?> getDictionary() async {
     try {
       var url = Uri.parse('https://6380c4968efcfcedac0e72fe.mockapi.io/words');
@@ -17,7 +18,7 @@ class DictionaryServices {
     }
     return null;
   }
-
+//Create a new word
   Future<Dictionary> createWord(
       String english, String turkish, String sentence) async {
     final response = await http.post(
@@ -38,7 +39,7 @@ class DictionaryServices {
       throw Exception('Failed to create word.');
     }
   }
-
+//Update an existing word
   Future<Dictionary> updateWord(
       String id, String english, String turkish, String sentence) async {
     final response = await http.put(
@@ -59,7 +60,7 @@ class DictionaryServices {
       throw Exception('Failed to update word.');
     }
   }
-
+// Delete existing word by id
   Future<Dictionary> deleteWord(String id) async {
     final http.Response response = await http.delete(
       Uri.parse('https://6380c4968efcfcedac0e72fe.mockapi.io/words/$id'),
