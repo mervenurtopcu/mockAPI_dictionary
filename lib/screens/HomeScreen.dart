@@ -24,86 +24,91 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     const transitionType = ContainerTransitionType.fade;
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Center(
-              child: Text("Dictionary",
-                  style: TextStyle(
-                      fontFamily: 'Combo',
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold))),
-          elevation: 15,
-          backgroundColor: Colors.orange,
-          shadowColor: Colors.black,
-        ),
-        body: FutureBuilder<List<Dictionary>>(
-          future: listDictionary,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return snapshot.data!.isEmpty
-                  ? const Center(
-                      child: Text(
-                          "The words are listed here. Please add words.",
-                          style: TextStyle(fontSize: 16, color: Colors.grey)),
-                    )
-                  : ListView.builder(
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (context, index) {
-                        return Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Colors.black26,
-                                  blurRadius: 5,
-                                  spreadRadius: 0.5,
-                                  offset: Offset(5, 5),
-                                )
-                              ],
-                              gradient: const LinearGradient(
-                                  begin: Alignment.centerLeft,
-                                  end: Alignment.centerRight,
-                                  colors: [
-                                    Colors.orangeAccent,
-                                    Colors.yellow
-                                  ])),
-                          margin: const EdgeInsets.all(3.0),
-                          child: ListTile(
-                            title: Text(
-                              snapshot.data![index].english,
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                  letterSpacing: 1.0),
+    return WillPopScope(
+      onWillPop: ()async{
+        return false;
+      },
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          appBar: AppBar(
+            title: const Center(
+                child: Text("Dictionary",
+                    style: TextStyle(
+                        fontFamily: 'Combo',
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold))),
+            elevation: 15,
+            backgroundColor: Colors.orange,
+            shadowColor: Colors.black,
+          ),
+          body: FutureBuilder<List<Dictionary>>(
+            future: listDictionary,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return snapshot.data!.isEmpty
+                    ? const Center(
+                        child: Text(
+                            "The words are listed here. Please add words.",
+                            style: TextStyle(fontSize: 16, color: Colors.grey)),
+                      )
+                    : ListView.builder(
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Colors.black26,
+                                    blurRadius: 5,
+                                    spreadRadius: 0.5,
+                                    offset: Offset(5, 5),
+                                  )
+                                ],
+                                gradient: const LinearGradient(
+                                    begin: Alignment.centerLeft,
+                                    end: Alignment.centerRight,
+                                    colors: [
+                                      Colors.orangeAccent,
+                                      Colors.yellow
+                                    ])),
+                            margin: const EdgeInsets.all(3.0),
+                            child: ListTile(
+                              title: Text(
+                                snapshot.data![index].english,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                    letterSpacing: 1.0),
+                              ),
+                              trailing: const Icon(
+                                Icons.keyboard_arrow_right,
+                                color: Colors.white,
+                              ),
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        DetailScreen(word: snapshot.data![index]),
+                                  ),
+                                );
+                              },
                             ),
-                            trailing: const Icon(
-                              Icons.keyboard_arrow_right,
-                              color: Colors.white,
-                            ),
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      DetailScreen(word: snapshot.data![index]),
-                                ),
-                              );
-                            },
-                          ),
-                        );
-                      },
-                    );
-            } else if (snapshot.hasError) {
-              return Text("${snapshot.error}");
-            }
-            return const CircularProgressIndicator();
-          },
-        ),
-        floatingActionButton: const CustomFABWidget(
-          transitionType: transitionType,
+                          );
+                        },
+                      );
+              } else if (snapshot.hasError) {
+                return Text("${snapshot.error}");
+              }
+              return const CircularProgressIndicator();
+            },
+          ),
+          floatingActionButton: const CustomFABWidget(
+            transitionType: transitionType,
+          ),
         ),
       ),
     );
